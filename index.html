@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Running Coin Game</title>
 <style>
-    body { margin: 0; background: #87CEEB; font-family: sans-serif; }
-    canvas { display: block; margin: 0 auto; background: #87CEEB; }
+  body { margin: 0; background: #87CEEB; font-family: sans-serif; }
+  canvas { display: block; margin: 0 auto; background: #87CEEB; }
 </style>
 </head>
 <body>
@@ -15,14 +15,14 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Game variables
+// Player setup
 let player = { x: 50, y: 300, width: 40, height: 40, dy: 0, gravity: 0.8, jumpPower: -12 };
-let groundY = 340;
+let groundY = 300;
 let coins = [];
 let score = 0;
 let gameSpeed = 5;
 
-// Create coins randomly
+// Spawn coins
 function createCoin() {
     let y = Math.random() * 200 + 50;
     coins.push({ x: canvas.width, y: y, size: 20 });
@@ -80,8 +80,8 @@ function update() {
 setInterval(createCoin, 1500);
 
 // Jump controls
-document.addEventListener("keydown", (e) => {
-    if (e.code === "Space" && player.y === groundY) {
+document.addEventListener("keydown", function(e) {
+    if ((e.key === " " || e.code === "Space") && player.y === groundY) {
         player.dy = player.jumpPower;
     }
 });
@@ -90,3 +90,4 @@ update();
 </script>
 </body>
 </html>
+
